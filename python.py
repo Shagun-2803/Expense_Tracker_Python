@@ -27,22 +27,41 @@ def view_expenses(expenses):
     print(f"Amount: {expense['amount']}")
     print()
 
+def total_expense(expenses):
 
-while(True):
-  print("\n1. Add Expense")
-  print("2. View Expense")
-  print("3. Exit")
+  if(len(expenses)==0):
+    print("No expenses found!")
+    return
 
-  choice = int(input("Enter your choice: "))
+amount = 0
 
-  if(choice == 1):
-    add_expense(expenses)
-  
-  elif(choice == 2):
-    view_expenses(expenses)
-  
-  elif(choice == 3):
-    break
-  
-  else:
-    print("Invalid Choice")
+for expense in expenses:
+  amount += expense['amount']
+
+print(f"Your total expense is {amount}")
+
+def main():
+  while(True):
+    print("\n1. Add Expense")
+    print("2. View Expense")
+    print("3. Total Expense")
+    print("4. Exit")
+
+    choice = int(input("Enter your choice: "))
+
+    if(choice == 1):
+      add_expense(expenses)
+    
+    elif(choice == 2):
+      view_expenses(expenses)
+    
+    elif(choice == 3):
+      total_expense(expenses)
+
+    elif(choice == 4):
+      break
+    
+    else:
+      print("Invalid Choice")
+
+main()
