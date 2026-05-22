@@ -1,3 +1,4 @@
+# creating a list for adding expenses in form of dictionaries
 expenses = []
 
 def add_expense(expenses):
@@ -6,7 +7,7 @@ def add_expense(expenses):
   title = input("Enter title of expense: ")
   new_expense["title"]  = title
 
-  category = input("Enter the category: ").lower()
+  category = input("Enter the category: ").lower() # we add lower() to avoid name conflict during search as use entry is ambiguous
   new_expense["category"] = category
 
   try:
@@ -90,6 +91,7 @@ def delete_expense(expenses):
     return
   
   for index,expense in enumerate(expenses , start = 1):
+    # here enumerate is used to print both the key and value of dictionary and start reprent the index we start from i.e 1 not 0
     print(f"{index}: {expense['title']}")
 
   try:
@@ -103,7 +105,7 @@ def delete_expense(expenses):
     return
   
   expenses.pop(choice-1)
-
+# we perform -1 because in siplay we started from 1 but in code the index starts from zero
   print("Expense deleted successfully")
 
   print("New list: ")
@@ -152,12 +154,6 @@ def main():
     
     else:
       print("Invalid Choice")
-
-
-  
-
-  
-
 
 main()
 
