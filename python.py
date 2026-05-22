@@ -80,6 +80,30 @@ def search_expense_by_category(expenses):
   if(found == False):
     print("Expense not found!")
 
+def delete_expense(expenses):
+  if(len(expenses)==0):
+    print("No expenses to delete!")
+    return
+  
+  for index,expense in enumerate(expenses , start = 1):
+    print(f"{index}: {expense['title']}")
+
+  choice = int(input("Enter the number of expense to be deleted: "))
+
+  if(choice > len(expenses) or choice < 1):
+    print("Invalid Input!")
+    return
+  
+  expenses.pop(choice-1)
+
+  print("Expense deleted successfully")
+
+  print("New list: ")
+  view_expenses(expenses)
+
+  
+
+
 def main():
   while(True):
     print("\n1. Add Expense")
@@ -87,7 +111,8 @@ def main():
     print("3. Total Expense")
     print("4. Search by Title")
     print("5. Search by Category")
-    print("6. Exit")
+    print("6. Delete Expense")
+    print("7. Exit")
 
     choice = int(input("Enter your choice: "))
 
@@ -107,6 +132,9 @@ def main():
       search_expense_by_category(expenses)
 
     elif(choice == 6):
+      delete_expense(expenses)
+
+    elif(choice == 7):
       break
     
     else:
