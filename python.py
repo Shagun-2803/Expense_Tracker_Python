@@ -33,19 +33,61 @@ def total_expense(expenses):
     print("No expenses found!")
     return
 
-amount = 0
+  amount = 0
 
-for expense in expenses:
-  amount += expense['amount']
+  for expense in expenses:
+    amount += expense['amount']
 
-print(f"Your total expense is {amount}")
+  print(f"Your total expense is {amount}")
+
+def search_expense_by_title(expenses):
+  if(len(expenses)==0):
+    print("No expenses added yet!")
+    return
+  
+  search_title = input("Enter the title to be searched: ")
+
+  found = False
+
+  for expense in expenses:
+    if(search_title.lower() == expense['title'].lower()):
+      print("Expense found: ")
+      print(f"Title: {expense['title']}")
+      print(f"Category: {expense['category']}")
+      print(f"Amount: {expense['amount']}")
+      found = True
+
+  if(found == False):
+    print("Expense not found!")
+
+def search_expense_by_category(expenses):
+  if(len(expenses)==0):
+    print("No expenses added yet!")
+    return
+  
+  category_search = input("Enter the category to be searched: ")
+
+  found = False
+
+  for expense in expenses:
+    if(category_search.lower() == expense['category'].lower()):
+      print("Expense found: ")
+      print(f"Title: {expense['title']}")
+      print(f"Category: {expense['category']}")
+      print(f"Amount: {expense['amount']}")
+      found = True
+
+  if(found == False):
+    print("Expense not found!")
 
 def main():
   while(True):
     print("\n1. Add Expense")
     print("2. View Expense")
     print("3. Total Expense")
-    print("4. Exit")
+    print("4. Search by Title")
+    print("5. Search by Category")
+    print("6. Exit")
 
     choice = int(input("Enter your choice: "))
 
@@ -59,6 +101,12 @@ def main():
       total_expense(expenses)
 
     elif(choice == 4):
+      search_expense_by_title(expenses)
+
+    elif(choice == 5):
+      search_expense_by_category(expenses)
+
+    elif(choice == 6):
       break
     
     else:
