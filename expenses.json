@@ -1,0 +1,12 @@
+[
+    {
+        "title": "Pizza",
+        "category": "food",
+        "amount": 399
+    },
+    {
+        "title": "T-shirt",
+        "category": "shopping",
+        "amount": 99
+    }
+]

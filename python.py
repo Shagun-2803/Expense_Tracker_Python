@@ -1,5 +1,16 @@
+import json
+
+def load_expenses():
+  try:
+    with open("expenses.json", "r") as file:
+      data = json.load(file)
+      return data
+  
+  except FileNotFoundError:
+    return []
+  
 # creating a list for adding expenses in form of dictionaries
-expenses = []
+expenses = load_expenses()
 
 def add_expense(expenses):
   new_expense = {}
@@ -19,6 +30,7 @@ def add_expense(expenses):
   new_expense["amount"] = amount
 
   expenses.append(new_expense)
+  save_expenses(expenses)
 
   print("Expense added successfully")
 
@@ -105,13 +117,17 @@ def delete_expense(expenses):
     return
   
   expenses.pop(choice-1)
+  save_expenses(expenses)
 # we perform -1 because in siplay we started from 1 but in code the index starts from zero
   print("Expense deleted successfully")
 
   print("New list: ")
   view_expenses(expenses)
 
-  
+
+def save_expenses(expenses):
+  with open("expenses.json","w") as file:
+    json.dump(expenses,file,indent=4) # indent 4 is used for pretty formatting with indentation. Much easier to inspect/debug.
 
 
 def main():
@@ -133,7 +149,7 @@ def main():
 
     if(choice == 1):
       add_expense(expenses)
-    
+          
     elif(choice == 2):
       view_expenses(expenses)
     
